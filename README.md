@@ -4,5 +4,8 @@
 
 ```javascript
 npm run dev -- --city=Moscow
+npm run dev -- -c=Moscow
+
 npm run dev -- --city="New York"
+npm run dev -- -c="New York"
 ```
