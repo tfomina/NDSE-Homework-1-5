@@ -50,6 +50,11 @@ http.get(url, (res) => {
     .on("end", () => {
       const parsedData = JSON.parse(rawData);
 
+      const windSpeed = (parsedData.current.wind_speed * (5 / 18)).toFixed(2);
+      const pressure = (
+        parsedData.current.pressure * mbar_to_mmHg_ratio
+      ).toFixed(2);
+
       console.log(
         `Погода в городе ${parsedData.location.name} (${parsedData.location.country})`
       );
@@ -57,16 +62,8 @@ http.get(url, (res) => {
       console.log(
         `Описание погоды: ${parsedData.current.weather_descriptions}`
       );
-      console.log(
-        `Скорость ветра: ${(parsedData.current.wind_speed * (5 / 18)).toFixed(
-          2
-        )} м/с`
-      );
-      console.log(
-        `Давление: ${(parsedData.current.pressure * mbar_to_mmHg_ratio).toFixed(
-          2
-        )} мм. ртутного столба`
-      );
+      console.log(`Скорость ветра: ${windSpeed} м/с`);
+      console.log(`Давление: ${pressure} мм. ртутного столба`);
       console.log(`Влажность: ${parsedData.current.humidity}%`);
     })
     .on("error", (e) => {
