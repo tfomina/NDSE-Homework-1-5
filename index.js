@@ -50,10 +50,10 @@ http.get(url, (res) => {
     .on("end", () => {
       const parsedData = JSON.parse(rawData);
 
-      const windSpeed = (parsedData.current.wind_speed * (5 / 18)).toFixed(2);
+      const windSpeed = (parsedData.current.wind_speed * (5 / 18)).toFixed(2); // км/ч --> м/с
       const pressure = (
         parsedData.current.pressure * mbar_to_mmHg_ratio
-      ).toFixed(2);
+      ).toFixed(2); // миллибары --> мм ртутного столба
 
       console.log(
         `Погода в городе ${parsedData.location.name} (${parsedData.location.country})`
